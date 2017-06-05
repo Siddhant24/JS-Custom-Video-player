@@ -10,5 +10,5 @@ Features -
   6. A button for toggling full screen. The icon changes on clicking.
   7. A video progress bar. To go to a specific time click on the progress bar. The bar can also be clicked and slided along the path.
 
-Note : The full screen icon is taken from www.flaticon.com/free-icons/fullscreen_26392
+Note : The full screen icon is taken from www.flaticon.com/free-icons/fullscreen_26392 .
        The exit full screen icon is taken from www.flaticon.com/free-icon/exit-full-screen_1126
