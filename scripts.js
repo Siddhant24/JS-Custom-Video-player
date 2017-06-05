@@ -41,6 +41,9 @@ function scrub(e) {
 
 function fullscreenFunc () {
 player.webkitRequestFullScreen();
+player.msRequestFullscreen();
+player.mozRequestFullScreen();
+player.requestFullscreen();
 }
 
 // event listeners
