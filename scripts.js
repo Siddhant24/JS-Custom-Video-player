@@ -3,9 +3,10 @@ const video = player.querySelector('.viewer');
 const progress = player.querySelector('.progress');
 const progressBar = player.querySelector('.progress__filled');
 const toggle = player.querySelector('.toggle');
-const skipButtons = player.querySelectorAll('[data-skip]');
-const ranges = player.querySelectorAll('.player__slider');
+const skipButtons = Array.from(player.querySelectorAll('[data-skip]'));
+const ranges = Array.from(player.querySelectorAll('.player__slider'));
 const fullscreen = player.querySelector('.full_screen');
+const full_screen_icon = document.getElementById('full_screen_icon');
 // functions
 
 function togglePlay(){
@@ -39,11 +40,35 @@ function scrub(e) {
   video.currentTime = scrubTime;
 }
 
-function fullscreenFunc () {
-player.webkitRequestFullScreen();
-player.msRequestFullscreen();
-player.mozRequestFullScreen();
-player.requestFullscreen();
+function fullscreenFunc() {
+    var isInFullScreen = (document.fullscreenElement && document.fullscreenElement !== null) ||
+        (document.webkitFullscreenElement && document.webkitFullscreenElement !== null) ||
+        (document.mozFullScreenElement && document.mozFullScreenElement !== null) ||
+        (document.msFullscreenElement && document.msFullscreenElement !== null);
+console.log(isInFullScreen);
+    if (!isInFullScreen) {
+        if (player.requestFullscreen) {
+            player.requestFullscreen();
+        } else if (player.mozRequestFullScreen) {
+            player.mozRequestFullScreen();
+        } else if (player.webkitRequestFullScreen) {
+            player.webkitRequestFullScreen();
+        } else if (player.msRequestFullscreen) {
+            player.msRequestFullscreen();
+        }
+        full_screen_icon.setAttribute('src', 'fullscreen-exit-symbol-white.png');
+    } else {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+        } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+        }
+        full_screen_icon.setAttribute('src', 'fullscreen-symbol-white.png');
+    }
 }
 
 // event listeners
